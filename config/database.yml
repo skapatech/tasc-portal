@@ -54,7 +54,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: tasc-portal_production
+  host: localhost
+  database: tasc
   pool: 5
-  username: tasc-portal
-  password:
+  username: tasc
+  password: tasc
