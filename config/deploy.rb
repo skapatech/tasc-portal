@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'tasc-portal'
-set :repo_url, 'https://morganbird@github.com/morganbird/tasc-portal.git'
+set :repo_url, 'git@github.com:morganbird/tasc-portal.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -11,7 +11,9 @@ set :repo_url, 'https://morganbird@github.com/morganbird/tasc-portal.git'
 set :deploy_to, '/home/birdm/webapps/tasc'
 
 # Default value for :scm is :git
-# set :scm, :git
+set :scm, :git
+
+set :tmp_dir, "/home/birdm/tmp"
 
 # Default value for :format is :pretty
 # set :format, :pretty
@@ -20,7 +22,7 @@ set :deploy_to, '/home/birdm/webapps/tasc'
 # set :log_level, :debug
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
@@ -34,23 +36,14 @@ set :deploy_to, '/home/birdm/webapps/tasc'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :user, "birdm"
-set :scm_username, "morganbird"
-set :use_sudo, false
-
-role :web, "web445.webfaction.com"
-role :app, "web445.webfaction.com"
-role :db,  "web445.webfaction.com", :primary => true
-
-
-#default_run_options[:pty] = true
+#set :use_sudo, false
 
 namespace :deploy do
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      run "#{deploy_to}/bin/restart"
+      execute "#{deploy_to}/bin/restart"
     end
   end
 
