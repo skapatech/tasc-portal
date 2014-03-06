@@ -1,5 +1,6 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
+require 'bundler/capistrano'
 
 set :application, 'tasc-portal'
 set :repo_url, 'git@github.com:morganbird/tasc-portal.git'
