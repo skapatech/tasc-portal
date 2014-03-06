@@ -40,6 +40,8 @@ set :pty, true
 
 namespace :deploy do
 
+  #TODO: figure out how to bundle update after deploy
+  
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
