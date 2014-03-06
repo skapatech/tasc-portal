@@ -38,6 +38,12 @@ set :pty, true
 
 #set :use_sudo, false
 
+set :default_environment, { 
+  'PATH' => '$HOME/webapps/tasc/bin:$PATH',
+  'GEM_HOME' => '$HOME/webapps/tasc/gems',
+  'RUBYLIB' => '$HOME/webapps/tasc/lib'
+}
+
 namespace :deploy do
 
   #TODO: figure out how to bundle update after deploy
