@@ -23,7 +23,33 @@
 
   <body>
 
-    <%= yield %>
+
+
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "Skeo TASC Portal", controller: "main" %></a></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="divider"></li>
+          <li><%= link_to "List Providers" %></li>
+          <li class="divider"></li>
+          <li><%= link_to "New Provider" %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Search Providers" %></li>
+        </ul>
+      </section>
+    </nav>
+
+    <div class="row">
+      <div class="small-8 columns"><%= yield %></div>
+      <div class="small-4 columns">
+        <h2 class="subheader">About Us</h2>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+    </div>
 
     
     <%= javascript_include_tag "application" %>
