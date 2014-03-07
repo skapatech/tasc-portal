@@ -22,7 +22,7 @@ set :tmp_dir, "/home/birdm/tmp"
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, true
+# set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
@@ -38,12 +38,6 @@ set :pty, true
 
 #set :use_sudo, false
 
-set :default_environment, { 
-  'PATH' => '$HOME/webapps/tasc/bin:$PATH',
-  'GEM_HOME' => '$HOME/webapps/tasc/gems',
-  'RUBYLIB' => '$HOME/webapps/tasc/lib'
-}
-
 namespace :deploy do
 
   #TODO: figure out how to bundle update after deploy
@@ -52,6 +46,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       execute "#{deploy_to}/bin/restart"
+      info capture("echo $PATH")
     end
   end
 

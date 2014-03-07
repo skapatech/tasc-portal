@@ -42,6 +42,9 @@ end
 gem 'capistrano', group: :development
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
+
+gem 'therubyracer', :platforms => :ruby
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
