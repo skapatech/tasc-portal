@@ -14,18 +14,13 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
 #
-# require 'capistrano/rvm'
+require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'
-# require 'capistrano/rails/assets'
-# require 'capistrano/rails/migrations'
-require 'capistrano/rails'
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
 
-set :bundle_cmd, '/home/birdm/bundle'
-set :default_environment, { 
-  'PATH' => '#{release_path}/bin:$PATH'
-}
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }

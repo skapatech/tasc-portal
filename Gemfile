@@ -43,7 +43,7 @@ gem 'capistrano', group: :development
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 
-gem 'therubyracer', :platforms => :ruby
+gem 'rvm-capistrano'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

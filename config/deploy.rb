@@ -46,7 +46,6 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       execute "#{deploy_to}/bin/restart"
-      info capture("echo $PATH")
     end
   end
 
