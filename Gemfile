@@ -43,6 +43,7 @@ gem 'capistrano', group: :development
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 
+#gem 'rvm-capistrano'
 gem 'capistrano-rvm'
 
 gem 'therubyracer'
