@@ -45,6 +45,8 @@ gem 'capistrano-bundler'
 
 gem 'capistrano-rvm'
 
+gem 'therubyracer'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
