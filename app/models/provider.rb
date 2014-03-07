@@ -10,7 +10,7 @@ class Provider < ActiveRecord::Base
   validates :organization, presence: true
   validates :resume, presence: true
   validates :rate, presence: true, :numericality => {:greater_than => 0}
-  validate :must_have_an_expertise
+  #validate :must_have_an_expertise
 
 
   private
