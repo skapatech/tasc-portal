@@ -9,7 +9,8 @@ class Provider < ActiveRecord::Base
   validates :position, presence: true
   validates :organization, presence: true
   validates :resume, presence: true
-  validates :rate, presence: true, :numericality => {:greater_than => 0}
+  validates :rate, :numericality => {:greater_than => 0}
+  validates :email, uniqueness: true
   #validate :must_have_an_expertise
 
 

@@ -14,5 +14,5 @@ describe Subject do
 
   it "is invalid without a name" do
     expect(Subject.new(name: nil)).to have(1).errors_on(:name)
-  end
+  end 
 end

@@ -30,5 +30,7 @@ module TascPortal
             request_specs: false
         g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    config.i18n.enforce_available_locales = true
   end
 end
