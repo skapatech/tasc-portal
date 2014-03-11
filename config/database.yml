@@ -54,8 +54,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  host: web445.webfaction.com
   database: tasc
   pool: 5
-  username: tasc
-  password: tasc
+  username: tascprod
+  password: tascprod
