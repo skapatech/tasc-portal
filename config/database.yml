@@ -57,5 +57,5 @@ production:
   host: localhost
   database: tasc
   pool: 5
-  username: tascprod
+  username: tasc
   password: tascprod
