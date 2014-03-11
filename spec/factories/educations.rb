@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :education do
     provider_id 1
     degree_id 1
-    major "MyString"
+    major "Urban Planning"
   end
 end

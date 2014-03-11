@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :degree do
-    name "MyString"
+    name "Bachelors"
     order 1
   end
 end

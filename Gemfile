@@ -44,6 +44,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
+  gem 'guard-rspec', require: false
 end
 
 gem 'therubyracer'
