@@ -68,3 +68,4 @@ end
 gem 'zurb-foundation'
 
 gem 'devise'
+gem 'cancancan'
