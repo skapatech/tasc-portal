@@ -84,7 +84,7 @@ TascPortal::Application.configure do
 
   ActionMailer::Base.smtp_settings = {
    :address               => "smtp.webfaction.com",
-   :domain                => "smtp.webfaction.com",
+   :domain                => "morganbird.com",
    :authentication        => :login,
    :user_name             => "tasc_portal",
    :password              => "tascportal"
