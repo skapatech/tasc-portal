@@ -11,14 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field columns">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, disabled: true %>
   </div>
-  <div class="field">
+  <div class="field columns">
     <%= f.check_box :admin %><%= f.label :admin %>
-  </div>
-  <div class="field">
     <%= f.check_box :employee %><%= f.label :employee %>
   </div>
   <div class="actions">

@@ -1,0 +1,17 @@
+<% if f.object.user_id.nil? || f.object.user_id == current_user.id %>
+<div class='nested-fields'>
+
+  <div class="field large-1 columns">
+    <%= f.label :rating, "Rating" %>
+    <%= f.select :rating, options_for_select([nil,1,2,3,4,5], f.object.rating) %>
+  </div>
+  <div class="field large-6 columns">
+    <%= f.label :comments, "Comments" %>
+    <%= f.text_area :comments %>
+  </div>
+</div>
+
+<% else %>
+
+
+<% end %>

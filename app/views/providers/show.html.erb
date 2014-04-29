@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @provider.first_name %> <%= @provider.middle_initial unless @provider.middle_initial.nil?  %> <%= @provider.last_name %>
+</p>
+
+<p>
+  <strong>Hourly Rate:</strong>
+  <%= number_to_currency @provider.rate %>
+</p>
+
+<p>
+  <strong>Current Position:</strong>
+  <%= @provider.position %>
+</p>
+
+<p>
+  <strong>Current Organization:</strong>
+  <%= @provider.organization %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @provider.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @provider.phone %>
+</p>
+
+<% if !@provider.cell.nil? %>
+<p>
+  <strong>Cell:</strong>
+  <%= @provider.cell %>
+</p>
+<% end %>
+
+<p>
+  <strong>Address:</strong><br />
+  <%= @provider.address1 %><br />
+  <% if @provider.address2.length > 0 %><%= @provider.address2 %><br /><% end %>
+  <%= @provider.city %>, <%= @provider.state %> <%= @provider.zip %>
+</p>
+
+<p>
+  <strong>Years of Experience:</strong>
+  <%= @provider.years_experience %>
+</p>
+
+<p>
+  <strong>Languages</strong><br />
+  <% @provider.languages.each do |lang| %>
+    <%= lang.name %><br />
+  <% end %>
+</p>
+<p>
+  <strong>Education</strong><br />
+  <% @provider.educations.each do |e| %>
+  <%= e.degree.name %>, <%= e.major %><br />
+  <% end %>
+</p>
+<p>
+  <strong>Resume:</strong><br />
+  <%= @provider.resume %>
+</p>
+
+<%= link_to 'Edit', edit_provider_path(@provider) %> |
+<%= link_to 'Back', providers_path %>

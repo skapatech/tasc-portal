@@ -1,11 +1,23 @@
-<h2>Sign in</h2>
+<h3>Welcome to the Skeo Solutions Technical Advisor and Facilitator Database!</h3>
+<p>Thank you for your interest in providing technical expertise for Skeo Solutions.
+  The information you provide on these pages will assist us in understanding which
+  of our projects will be best served by you. Please login below using the user name
+  and password provided to you. If you would like to obtain a user name/password or
+  your existing user name/password is not working, please contact Amanda Goyne at agoyne@skeo.com.</p>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+<div class='row'>
+  <div class='columns large-4'>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email, :autofocus => true %></div>
+  </div>
+</div>
+<div class='row'>
+  <div class='columns large-4'>
+    <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+  </div>
+</div>
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>

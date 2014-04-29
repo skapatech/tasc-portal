@@ -1,0 +1,1 @@
+json.extract! @provider, :id, :first_name, :middle_initial, :last_name, :email, :phone, :cell, :address1, :address2, :city, :state, :zip, :rate, :position, :organization, :years_experience, :resume, :created_at, :updated_at

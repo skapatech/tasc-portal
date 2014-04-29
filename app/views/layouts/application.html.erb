@@ -14,7 +14,7 @@
  <!-- Set the viewport width to device width for mobile -->
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
- <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+ <title><%= content_for?(:title) ? yield(:title) : "Skeo Solutions TASC Portal" %></title>
 
  <%= stylesheet_link_tag    "application" %>
  <%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -28,30 +28,29 @@
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
-        <h1><%= link_to "Skeo TASC Portal", controller: '/main', action: 'index'  %></a></h1>
+        <h1><%= link_to "Skeo Solutions Technical Advisor and Facilitator Database", controller: '/main', action: 'index'  %></a></h1>
       </li>
     </ul>
     <section class="top-bar-section">
       <ul class="right">
+        <% if user_signed_in? %>
         <li class="divider"></li>
-        <li><%= link_to "List Providers" %></li>
+        <li><%= link_to "List Providers", providers_path %></li>
         <li class="divider"></li>
-        <li><%= link_to "New Provider" %></li>
+        <li><%= link_to "New Provider", new_provider_path %></li>
         <li class="divider"></li>
         <li><%= link_to "Search Providers" %></li>
         <li class="divider"></li>
         <li><%= link_to "Log Out", destroy_user_session_path, method: 'delete' %></li>
+        <% end %>
       </ul>
     </section>
   </nav>
 
-  <div class="row">
-    <%= yield %></div>
-<!--     <div class="small-8 columns">
-    <div class="small-4 columns">
-      <h2 class="subheader">About Us</h2>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div> -->
+  <div class="container">
+    <div class='row'>
+      <%= yield %>
+    </div>
   </div>
 
 

@@ -1325,3 +1325,7 @@ $topbar-bg-color: #2a2f62;
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 
 @import 'foundation';
+
+body {
+  padding-bottom:40px;
+}

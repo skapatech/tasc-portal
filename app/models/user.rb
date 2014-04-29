@@ -3,4 +3,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  has_many :ratings
+
+  after_create :set_employee
+
+
+  private
+  def set_employee
+    if self.email.include? "skeo.com"
+      self.employee = true
+      self.save
+    end
+  end
 end
