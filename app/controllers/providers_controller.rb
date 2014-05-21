@@ -15,10 +15,14 @@ class ProvidersController < ApplicationController
   # GET /providers/new
   def new
     @provider = Provider.new
+    @rating = Rating.new(user: current_user)
   end
 
   # GET /providers/1/edit
   def edit
+    if @provider.ratings.where(user: current_user).empty?
+      @provider.ratings << Rating.new(user: current_user)
+    end
   end
 
   # POST /providers
@@ -73,6 +77,7 @@ class ProvidersController < ApplicationController
       :phone, :cell, :address1, :address2, :city, :state, :zip, :rate, :position,
       :organization, :years_experience, :resume, :language_ids => [],
       expertises_attributes: [:id, :subject_id, :experience, :comment, :_destroy],
-      educations_attributes: [:id, :degree_id, :major, :_destroy])
+      educations_attributes: [:id, :degree_id, :major, :_destroy],
+      ratings_attributes: [:id, :rating, :comments, :user_id])
     end
 end

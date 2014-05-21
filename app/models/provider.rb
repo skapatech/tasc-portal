@@ -21,7 +21,20 @@ class Provider < ActiveRecord::Base
 
   accepts_nested_attributes_for :expertises, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :educations, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :ratings, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :ratings,
+      reject_if: proc { |attributes| (attributes['rating'].nil? || !(attributes['rating'].to_i > 0)) && attributes['comments'].blank? }, 
+      :allow_destroy => true
+
+  def average_rating
+    ratings.empty? ? '' :
+      ratings.inject(0.0) do |sum, el|
+        if(!el.rating.nil? && el.rating > 0) then
+          sum + el.rating
+        else
+          sum
+        end
+      end / ratings.size
+  end
 
   private
   def must_have_an_expertise

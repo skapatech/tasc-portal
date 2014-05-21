@@ -5,6 +5,27 @@
   <%= @provider.first_name %> <%= @provider.middle_initial unless @provider.middle_initial.nil?  %> <%= @provider.last_name %>
 </p>
 
+<fieldset>
+  <legend>Average Rating: <%= @provider.average_rating %></legend>
+
+  <% if @provider.ratings.size > 0 %>
+  <table>
+    <thead><tr>
+      <th>Date</th><th>Reviewer</th><th>Rating</th><th>Comments</th>
+    </tr></thead>
+    <tbody>
+    <% @provider.ratings.each do |rating| %>
+    <tr>
+      <td><%= rating.updated_at.strftime '%d-%m-%Y' %></td>
+      <td><%= rating.user.name %></td>
+      <td><%= rating.rating %></td>
+      <td><%= rating.comments %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+</fieldset>
 <p>
   <strong>Hourly Rate:</strong>
   <%= number_to_currency @provider.rate %>
@@ -65,6 +86,23 @@
   <strong>Resume:</strong><br />
   <%= @provider.resume %>
 </p>
-
+<p>
+  <strong>Expertise Profile:</strong><br />
+  <table>
+    <thead>
+      <tr><th>Topic</th><th>Expertise</th><th>Years of Experience</th><th>Comments</th></tr>
+    </thead>
+    <tbody>
+      <% @provider.expertises.each do |expertise| %>
+        <tr>
+          <td><%= expertise.subject.subject_area.name %></td>
+          <td><%= expertise.subject.name %></td>
+          <td><%= expertise.experience %></td>
+          <td><%= expertise.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
 <%= link_to 'Edit', edit_provider_path(@provider) %> |
 <%= link_to 'Back', providers_path %>

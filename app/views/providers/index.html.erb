@@ -3,11 +3,11 @@
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>Name</th>
       <th>City</th>
       <th>State</th>
       <th>Position</th>
+      <th>Avg Rating</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,11 +17,11 @@
   <tbody>
     <% @providers.each do |provider| %>
       <tr>
-        <td><%= provider.first_name %></td>
-        <td><%= provider.last_name %></td>
+        <td><%= provider.first_name %> <%= provider.last_name %></td>
         <td><%= provider.city %></td>
         <td><%= provider.state %></td>
         <td><%= provider.position %></td>
+        <td><%= provider.average_rating %></td>
         <td><%= link_to 'Details', provider %></td>
         <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
         <td><%= link_to 'Delete', provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -14,13 +14,10 @@
 
   <fieldset>
     <legend>Evaluations</legend>
-    <div id='ratings'>
+    <div id='ratings row'>
       <%= f.fields_for :ratings do |rating| %>
         <%= render 'rating_fields', :f => rating %>
       <% end %>
-      <div class='links'>
-        <%= link_to_add_association 'add evaluation', f, :ratings %>
-      </div>
     </div>
   </fieldset>
 
