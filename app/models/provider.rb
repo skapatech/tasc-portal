@@ -1,10 +1,10 @@
 class Provider < ActiveRecord::Base
-  has_many :expertises
+  has_many :expertises, inverse_of: :provider
   has_many :subjects, through: :expertises
   has_many :speaks
   has_many :languages, through: :speaks
 
-  has_many :educations
+  has_many :educations, inverse_of: :provider
   has_many :degrees, through: :educations
   has_many :ratings
 

@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  #host: localhost
   database: tasc-portal_development
   pool: 5
   password:

@@ -1,6 +1,6 @@
 class Expertise < ActiveRecord::Base
-  belongs_to :provider
-  belongs_to :subject
+  belongs_to :provider, inverse_of: :expertises, dependent: :destroy
+  belongs_to :subject, inverse_of: :expertises, dependent: :destroy
 
   validates :subject, presence: true
   validates :provider, presence: true
