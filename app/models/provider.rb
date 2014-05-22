@@ -22,8 +22,29 @@ class Provider < ActiveRecord::Base
   accepts_nested_attributes_for :expertises, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :educations, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :ratings,
-      reject_if: proc { |attributes| (attributes['rating'].nil? || !(attributes['rating'].to_i > 0)) && attributes['comments'].blank? }, 
+      reject_if: proc { |attributes| (attributes['rating'].nil? || !(attributes['rating'].to_i > 0)) && attributes['comments'].blank? },
       :allow_destroy => true
+
+  def self.search attributes
+    @providers = all
+
+    attributes.each do |key, value|
+      case key.to_sym
+      when :rate
+        @providers = @providers.where('rate < ?', value) unless value.empty?
+      when :subject_ids
+        @providers = @providers.includes(:expertises).where('expertises.subject_id in (?)', value) unless value.empty?
+      when :language_ids
+        @providers = @providers.includes(:speaks).where('speaks.language_id in (?)', value) unless value.empty?
+      when :major
+          @providers = @providers.includes(:educations).where('educations.major like ?', '%'+value+'%') unless value.empty?
+      else # unknown key (do nothing or raise error, as you prefer to)
+
+      end
+    end
+
+    return @providers
+  end
 
   def average_rating
     ratings.empty? ? '' :

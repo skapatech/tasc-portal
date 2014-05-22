@@ -1,0 +1,28 @@
+<h2>Search Providers</h2>
+<%= form_tag do %>
+  <div class='row'>
+    <div class='field large-4 columns left'>
+      <%= label_tag :subject_ids, 'Expertise Areas' %>
+      <%= select_tag :subject_ids, options_for_select(Subject.all.collect {|x| [x.full_name, x.id]}, params[:subject_ids]), :multiple => true %>
+    </div>
+    <div class='field large-2 columns left'>
+      <%= label_tag :language_ids, 'Languages' %>
+      <%= select_tag :language_ids, options_for_select(Language.all.collect {|x| [x.name, x.id]}, params[:language_ids]), :multiple => true %>
+    </div>
+    <div class='field large-2 columns left'>
+      <%= label_tag :major, 'Education Field' %>
+      <%= text_field_tag :major, params[:major] %>
+    </div>
+    <div class='field large-2 columns left'>
+      <%= label_tag :rate, 'Rate' %>
+      <%= text_field_tag :rate, params[:rate] %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='columns'>
+    <%= submit_tag 'search' %>
+  </div>
+  </div>
+<% end %>
+
+<%= render 'list' %>

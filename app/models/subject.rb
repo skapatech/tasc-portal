@@ -5,4 +5,8 @@ class Subject < ActiveRecord::Base
 
   validates :subject_area, presence: true
   validates :name, presence: true
+
+  def full_name
+    subject_area.name + ' - ' + name
+  end
 end
