@@ -39,7 +39,7 @@
         <li class="divider"></li>
         <li><%= link_to "New Provider", new_provider_path %></li>
         <li class="divider"></li>
-        <li><%= link_to "Search Providers" %></li>
+        <li><%= link_to "Search Providers", {controller: 'providers', action: 'search'}%></li>
         <li class="divider"></li>
         <li><%= link_to "Log Out", destroy_user_session_path, method: 'delete' %></li>
         <% end %>
