@@ -9,7 +9,7 @@ class ProvidersController < ApplicationController
   # GET /providers
   # GET /providers.json
   def index
-    redirect_to 'search'
+    @providers = Provider.all
   end
 
   # GET /providers/1
