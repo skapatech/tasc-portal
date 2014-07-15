@@ -31,13 +31,23 @@ class Provider < ActiveRecord::Base
     attributes.each do |key, value|
       case key.to_sym
       when :rate
-        @providers = @providers.where('rate < ?', value) unless value.empty?
+        @providers = @providers.where('rate <= ?', value) unless value.empty?
       when :subject_ids
         @providers = @providers.includes(:expertises).where('expertises.subject_id in (?)', value) unless value.empty?
       when :language_ids
         @providers = @providers.includes(:speaks).where('speaks.language_id in (?)', value) unless value.empty?
       when :major
           @providers = @providers.includes(:educations).where('educations.major like ?', '%'+value+'%') unless value.empty?
+      when :rating
+        @providers = @providers.where('providers.id in (select providers.id from providers join ratings on providers.id = ratings.provider_id group by providers.id having avg(rating) >= ?)', value)
+      when :reviewer_ids
+        @providers = @providers.includes(:ratings).where('ratings.user_id in (?)', value) unless value.empty?
+      when :degree_ids
+        @providers = @providers.includes(:educations).where('educations.degree_id in (?)', value) unless value.empty?
+      when :resume
+        @providers = @providers.where('resume ilike ?', '%'+value+'%')
+      when :years_experience
+        @providers = @providers.where('years_experience >= ?', value)
       else # unknown key (do nothing or raise error, as you prefer to)
 
       end
