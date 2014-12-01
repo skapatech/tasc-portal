@@ -127,8 +127,6 @@
     <div id='expertises'>
       <%= f.fields_for :expertises do |expertise| %>
         <%= render 'expertise_fields', :f => expertise %>
-
-
       <% end %>
       <div class='links'>
         <%= link_to_add_association 'add expertise', f, :expertises %>

@@ -39,7 +39,7 @@ class Provider < ActiveRecord::Base
       when :major
           @providers = @providers.includes(:educations).where('educations.major like ?', '%'+value+'%') unless value.empty?
       when :rating
-        @providers = @providers.where('providers.id in (select providers.id from providers join ratings on providers.id = ratings.provider_id group by providers.id having avg(rating) >= ?)', value)
+        @providers = @providers.where('providers.id in (select providers.id from providers join ratings on providers.id = ratings.provider_id group by providers.id having avg(rating) >= ?)', value) unless value.empty?
       when :reviewer_ids
         @providers = @providers.includes(:ratings).where('ratings.user_id in (?)', value) unless value.empty?
       when :degree_ids
@@ -48,10 +48,19 @@ class Provider < ActiveRecord::Base
         @providers = @providers.where('resume ilike ?', '%'+value+'%')
       when :years_experience
         @providers = @providers.where('years_experience >= ?', value)
+      when :provider
+        if value.empty? then next end
+        value[:expertises_attributes].each do |ea|
+          @providers = @providers.includes(:expertises).where(
+          'expertises.subject_id=? and expertises.experience>=?',
+           ea[1]["subject_id"], ea[1]["experience"] )
+        end
       else # unknown key (do nothing or raise error, as you prefer to)
 
       end
     end
+
+    #provider = Provider.new attributes[:provider]
 
     return @providers
   end

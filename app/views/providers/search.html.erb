@@ -1,5 +1,5 @@
 <h2>Search Providers</h2>
-<%= form_tag do %>
+<%= form_for(@provider, :url=>'search') do |f| %>
   <div class='row'>
     <div class='field large-2 columns left'>
       <%= label_tag :reviewer_ids, 'Worked With' %>
@@ -15,16 +15,6 @@
     </div>
   </div>
   <div class='row'>
-    <div class='field large-4 columns left'>
-      <%= label_tag :subject_ids, 'Expertise Areas' %>
-      <%= select_tag :subject_ids, options_for_select(Subject.all.collect {|x| [x.full_name, x.id]}, params[:subject_ids]), :multiple => true %>
-    </div>
-    <div class='field large-2 columns left'>
-      <%= label_tag :years_experience, 'Years of Experience' %>
-      <%= number_field_tag :years_experience, params[:years_experience] %>
-    </div>
-  </div>
-  <div class='row'>
     <div class='field large-2 columns left'>
       <%= label_tag :degree_ids, 'Degree' %>
       <%= select_tag :degree_ids, options_for_select(Degree.all.collect {|x| [x.name, x.id]}, params[:degree_ids]), :multiple => true %>
@@ -37,9 +27,16 @@
       <%= label_tag :language_ids, 'Languages' %>
       <%= select_tag :language_ids, options_for_select(Language.all.collect {|x| [x.name, x.id]}, params[:language_ids]), :multiple => true %>
     </div>
-
-
-
+  </div>
+  <div class='row'>
+    <div id='expertises'>
+      <%= f.fields_for :expertises do |expertise| %>
+        <%= render 'expertise_search_fields', :f => expertise %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add expertise', f, :expertises, :partial => 'expertise_search_fields' %>
+      </div>
+    </div>
   </div>
   <div class='row'>
     <div class='columns'>

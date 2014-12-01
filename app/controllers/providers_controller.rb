@@ -4,6 +4,9 @@ class ProvidersController < ApplicationController
   # GET /providers/search
   def search
     @providers = Provider.search params
+    @provider = Provider.new provider_params
+    Rails.logger.info "PARAMS!!!!!!"
+    Rails.logger.info @provider.expertises.count
   end
 
   # GET /providers
@@ -78,6 +81,8 @@ class ProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def provider_params
+      return nil if (params[:provider].nil?)
+
       params.require(:provider).permit(:first_name, :middle_initial, :last_name, :email,
       :phone, :cell, :address1, :address2, :city, :state, :zip, :rate, :position,
       :organization, :years_experience, :resume, :language_ids => [],

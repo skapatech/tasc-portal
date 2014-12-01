@@ -1,0 +1,12 @@
+<div class='nested-fields'>
+  <div class="field large-4 columns">
+    <%= label_tag :subject_id, "Expertise" %>
+    <%= f.select :subject_id, options_for_select(Subject.all.includes(:subject_area).collect {|s| [s.subject_area.name + " - " + s.name, s.id]  }) %>
+    <%#= f.input :subject_id, as: :select, collection: Subject.all.collect {|s| [s.subject_area.name + " - " + s.name, s.id]  }, selected: f.object.id, include_blank: false %>
+  </div>
+  <div class="field large-2 columns">
+    <%= f.label :experience, "Years Experience" %>
+    <%= f.select :experience, options_for_select(Expertise.EXPERIENCE.collect {|key, string| [string, key]  }, f.object.experience) %>
+  </div>
+  <%= link_to_remove_association "remove expertise", f %>
+</div>

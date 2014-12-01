@@ -7,7 +7,7 @@
   </div>
   <div class="field large-2 columns">
     <%= f.label :experience, "Years Experience" %>
-    <%= f.number_field :experience %>
+    <%= f.select :experience, options_for_select(Expertise.EXPERIENCE.collect {|key, string| [string, key]  }, f.object.experience) %>
   </div>
   <div class="field large-6 columns">
     <%= f.label :comment, "Comments" %>

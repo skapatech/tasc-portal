@@ -97,7 +97,7 @@
         <tr>
           <td><%= expertise.subject.subject_area.name %></td>
           <td><%= expertise.subject.name %></td>
-          <td><%= expertise.experience %></td>
+          <td><%= Expertise.EXPERIENCE[expertise.experience] %></td>
           <td><%= expertise.comment %></td>
         </tr>
       <% end %>
