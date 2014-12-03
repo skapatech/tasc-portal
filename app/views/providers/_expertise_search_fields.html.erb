@@ -1,4 +1,4 @@
-<div class='nested-fields'>
+<div class='nested-fields row'>
   <div class="field large-4 columns">
     <%= label_tag :subject_id, "Expertise" %>
     <%= f.select :subject_id, options_for_select(Subject.all.includes(:subject_area).collect {|s| [s.subject_area.name + " - " + s.name, s.id]  }) %>

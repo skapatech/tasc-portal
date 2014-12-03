@@ -29,11 +29,17 @@
     </div>
   </div>
   <div class='row'>
-    <div id='expertises'>
+    <div class='field large-2 columns left'>
+      <%= label_tag :resume, 'Resume' %>
+      <%= text_field_tag :resume, params[:resume] %>
+    </div>
+  </div>
+  <div class='row'>
+    <div id='expertises field'>
       <%= f.fields_for :expertises do |expertise| %>
         <%= render 'expertise_search_fields', :f => expertise %>
       <% end %>
-      <div class='links'>
+      <div class='links row'>
         <%= link_to_add_association 'add expertise', f, :expertises, :partial => 'expertise_search_fields' %>
       </div>
     </div>

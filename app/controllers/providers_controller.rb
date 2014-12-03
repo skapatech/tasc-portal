@@ -5,8 +5,6 @@ class ProvidersController < ApplicationController
   def search
     @providers = Provider.search params
     @provider = Provider.new provider_params
-    Rails.logger.info "PARAMS!!!!!!"
-    Rails.logger.info @provider.expertises.count
   end
 
   # GET /providers
