@@ -8,15 +8,15 @@ class Provider < ActiveRecord::Base
   has_many :degrees, through: :educations
   has_many :ratings
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :address1, presence: true
-  validates :zip, presence: true
-  validates :position, presence: true
-  validates :organization, presence: true
-  validates :resume, presence: true
-  validates :rate, :numericality => {:greater_than => 0}
-  validates :email, uniqueness: true
+  #validates :first_name, presence: true
+  #validates :last_name, presence: true
+  #validates :address1, presence: true
+  #validates :zip, presence: true
+  #validates :position, presence: true
+  #validates :organization, presence: true
+  #validates :resume, presence: true
+  #validates :rate, :numericality => {:greater_than => 0}
+  #validates :email, uniqueness: true
   #validate :must_have_an_expertise
 
   accepts_nested_attributes_for :expertises, :reject_if => :all_blank, :allow_destroy => true
@@ -33,17 +33,17 @@ class Provider < ActiveRecord::Base
       when :rate
         @providers = @providers.where('rate <= ?', value) unless value.empty?
       when :subject_ids
-        @providers = @providers.includes(:expertises).where('expertises.subject_id in (?)', value) unless value.empty?
+        @providers = @providers.joins(:expertises).where('expertises.subject_id in (?)', value) unless value.empty?
       when :language_ids
-        @providers = @providers.includes(:speaks).where('speaks.language_id in (?)', value) unless value.empty?
+        @providers = @providers.joins(:speaks).where('speaks.language_id in (?)', value) unless value.empty?
       when :major
-          @providers = @providers.includes(:educations).where('educations.major like ?', '%'+value+'%') unless value.empty?
+          @providers = @providers.joins(:educations).where('educations.major like ?', '%'+value+'%') unless value.empty?
       when :rating
         @providers = @providers.where('providers.id in (select providers.id from providers join ratings on providers.id = ratings.provider_id group by providers.id having avg(rating) >= ?)', value) unless value.empty?
       when :reviewer_ids
-        @providers = @providers.includes(:ratings).where('ratings.user_id in (?)', value) unless value.empty?
+        @providers = @providers.joins(:ratings).where('ratings.user_id in (?)', value) unless value.empty?
       when :degree_ids
-        @providers = @providers.includes(:educations).where('educations.degree_id in (?)', value) unless value.empty?
+        @providers = @providers.joins(:educations).where('educations.degree_id in (?)', value) unless value.empty?
       when :resume
         @providers = @providers.where('resume ilike ?', '%'+value+'%')
       when :years_experience
@@ -51,7 +51,7 @@ class Provider < ActiveRecord::Base
       when :provider
         if value.empty? then next end
         value[:expertises_attributes].each do |ea|
-          @providers = @providers.includes(:expertises).where(
+          @providers = @providers.joins(:expertises).where(
           'expertises.subject_id=? and expertises.experience>=?',
            ea[1]["subject_id"], ea[1]["experience"] )
         end

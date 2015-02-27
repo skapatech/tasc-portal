@@ -1,0 +1,39 @@
+FTP: tasc-portal.net
+User ID: re100832
+Password: TASC_e2inc
+
+
+SQL database:
+SQL 2005 HostName: sql2005-6.reinventinc.com
+SQL Database Name: tasc-portal
+SQL Username: re100832
+Password: TASC_e2inc
+
+
+user level access:
+username: user
+pass: #1aaaaa
+
+
+http://tasc-portal.net
+
+
+admin login:
+admin_e2: admin@e2inc
+admin@e2inc
+or
+admin_krissy
+krissyrussell#
+
+Login: admin_skeo
+Pass: admin@skeo
+
+
+user login:
+e2user now skeouser
+e2inc.com now skeo.com
+
+
+Data Source=sql2005-6.reinventinc.com;Integrated Security=False;Initial Catalog=tasc-portal;User ID=re100832;Password=TASC_e2inc
+
+Data Source=sqlserver1.e2inc.local;Integrated Security=False;Initial Catalog=tasc-portal;User ID=re100832;Password=TASC_e2inc
