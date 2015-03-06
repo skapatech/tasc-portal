@@ -54,7 +54,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  host: tasc.morganbird.com
   database: tasc
   pool: 5
   username: tasc

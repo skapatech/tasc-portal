@@ -40,7 +40,7 @@ end
 
 # Use Capistrano for deployment
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
@@ -77,3 +77,4 @@ gem 'cocoon'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter', '~> 4.1.0'
 gem 'area'
+gem 'arel'

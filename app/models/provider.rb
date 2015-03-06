@@ -32,8 +32,6 @@ class Provider < ActiveRecord::Base
       case key.to_sym
       when :rate
         @providers = @providers.where('rate <= ?', value) unless value.empty?
-      when :subject_ids
-        @providers = @providers.joins(:expertises).where('expertises.subject_id in (?)', value) unless value.empty?
       when :language_ids
         @providers = @providers.joins(:speaks).where('speaks.language_id in (?)', value) unless value.empty?
       when :major
@@ -45,16 +43,17 @@ class Provider < ActiveRecord::Base
       when :degree_ids
         @providers = @providers.joins(:educations).where('educations.degree_id in (?)', value) unless value.empty?
       when :resume
-        @providers = @providers.where('resume ilike ?', '%'+value+'%')
+        @providers = @providers.where('resume ilike ?', '%'+value+'%') if value.length>0
       when :years_experience
         @providers = @providers.where('years_experience >= ?', value)
       when :provider
-        if value.empty? then next end
+        next if value.empty?
+        eq = Array.new
         value[:expertises_attributes].each do |ea|
-          @providers = @providers.joins(:expertises).where(
-          'expertises.subject_id=? and expertises.experience>=?',
-           ea[1]["subject_id"], ea[1]["experience"] )
+          eq << "(expertises.subject_id=#{ea[1]['subject_id']} and expertises.experience>=#{ea[1]['experience']})"
         end
+        @providers = @providers.joins(:expertises).where(eq.join(" OR "))
+                        .group('providers.id').having('count(*)=?',value[:expertises_attributes].count)
       else # unknown key (do nothing or raise error, as you prefer to)
 
       end

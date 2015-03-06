@@ -1,5 +1,6 @@
 log = File.open("output.txt", 'w')
-ReResume.all.each do |r|
+ReResume.where("ResumeID in (41,42,186,188,253,276,309,318,366,372,391,393,394,405,406,450,457,458,463,465,480,498,568,570)").each do |r|
+  puts r.ResumeID
   r.Zip = r.Zip[0,5]
 
   begin
@@ -10,8 +11,14 @@ ReResume.all.each do |r|
     zip: r.Zip, rate: r.HourlyRate,
     position: r.JobTitle, organization: r.Organization, years_experience: r.ExperienceLevel.to_i, resume: r.ResumeText)
 
-    r.re_my_expertises.where('ExperienceLevel>13').each do |ex|
+    r.re_my_expertises.where('ExperienceLevel>12').each do |ex|
       subject = Subject.joins(:subject_area).where('subjects.name=? and subject_areas.name=?', ex.ExpertiseName, ex.ExpertiseSubCategory).first
+      if (subject.nil?)
+        puts "Missing subject: id #{ex.MyExpertiseID} #{ex.ExpertiseName}, #{ex.ExpertiseSubCategory}\n"
+        log.write("Missing subject: id #{ex.MyExpertiseID} #{ex.ExpertiseName}, #{ex.ExpertiseSubCategory}\n")
+        next
+      end
+
       if (!ex.ExpertiseComment.nil? && ex.ExpertiseComment.length>255) then
         ex.ExpertiseComment = ex.ExpertiseComment[0,255]
       end
@@ -19,15 +26,21 @@ ReResume.all.each do |r|
     end
 
     {r.EducationLevelID => r.Major1, r.EducationLevel2ID => r.Major2, r.EducationLevel3ID => r.Major3}.each do |id, major|
-      next if id.to_i < 6
-      provider.educations << Education.new(degree_id: id.to_i-3, major: major)
+      next if (id.to_i < 6 || major.nil? || major.length == 0)
+      provider.educations << Education.new(degree_id: id.to_i-6, major: major)
     end
 
-    provider.save
-  rescue StandardError => e
-    log.write(e)
+    if (provider.valid?)
+      provider.save
+    else
+      puts "Validation error on #{r.ResumeID}: #{provider.errors.full_messages}\n"
+      log.write("Validation error on #{r.ResumeID}: #{provider.errors.full_messages}")
+    end
+  rescue StandardError => ex
+    log.write(ex.message+"\n")
+    log.write(ex.backtrace.join("\n"))
     log.write("\n")
-    log.write(r.Zip)
+    log.write("ZIP: " + r.Zip)
     log.write("\n")
   end
 
