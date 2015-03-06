@@ -74,6 +74,6 @@ gem 'devise'
 gem 'cancancan'
 gem 'cocoon'
 
-# gem 'tiny_tds'
-# gem 'activerecord-sqlserver-adapter', '~> 4.1.0'
+gem 'tiny_tds'
+gem 'activerecord-sqlserver-adapter', '~> 4.1.0'
 # gem 'area'
