@@ -16,6 +16,10 @@
 # extended properties on the server.
 server 'morganbird.com', user: 'birdm', roles: %w{web app db} #, my_property: :my_value
 
+# Default deploy_to directory is /var/www/my_app
+set :deploy_to, '/home/birdm/webapps/tasc'
+set :tmp_dir, "/home/birdm/tmp"
+
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
@@ -39,4 +43,3 @@ server 'morganbird.com', user: 'birdm', roles: %w{web app db} #, my_property: :m
 # setting per server overrides global ssh_options
 
 set :ssh_options, { :forward_agent => true }
-

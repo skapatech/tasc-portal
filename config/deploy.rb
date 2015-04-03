@@ -7,13 +7,8 @@ set :repo_url, 'git@github.com:morganbird/tasc-portal.git'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-# Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/birdm/webapps/tasc'
-
 # Default value for :scm is :git
 set :scm, :git
-
-set :tmp_dir, "/home/birdm/tmp"
 
 # Default value for :format is :pretty
 # set :format, :pretty
@@ -41,7 +36,7 @@ set :tmp_dir, "/home/birdm/tmp"
 namespace :deploy do
 
   #TODO: figure out how to bundle update after deploy
-  
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
