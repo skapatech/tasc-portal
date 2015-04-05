@@ -33,6 +33,8 @@ set :scm, :git
 
 #set :use_sudo, false
 
+set :rails_env, 'production'
+
 namespace :deploy do
 
   #TODO: figure out how to bundle update after deploy

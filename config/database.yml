@@ -60,9 +60,9 @@ production:
   username: tasc
   password: tascprod
 
-reinvent:
-  adapter: sqlserver
-  host: sql2005-6.reinventinc.com
-  database: tasc-portal
-  username: re100832
-  password: TASC_e2inc
+# reinvent:
+#   adapter: sqlserver
+#   host: sql2005-6.reinventinc.com
+#   database: tasc-portal
+#   username: re100832
+#   password: TASC_e2inc
