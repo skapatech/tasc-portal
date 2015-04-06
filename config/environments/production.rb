@@ -78,7 +78,7 @@ TascPortal::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { :host => 'tasc.morganbird.com' }
+  config.action_mailer.default_url_options = { :host => 'tasc.skeo.com' }
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
@@ -86,7 +86,7 @@ TascPortal::Application.configure do
 
   ActionMailer::Base.smtp_settings = {
    :address               => "smtp.webfaction.com",
-   :domain                => "morganbird.com",
+   :domain                => "skeo.com",
    :authentication        => :login,
    :user_name             => "tasc_portal",
    :password              => "tascportal"
