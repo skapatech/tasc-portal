@@ -33,7 +33,7 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <% if user_signed_in? %>
+        <% if current_user.admin? || current_user.employee? %>
         <li class="divider"></li>
         <li><%= link_to "List Providers", providers_path %></li>
         <li class="divider"></li>
