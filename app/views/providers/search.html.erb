@@ -3,7 +3,7 @@
   <div class='row'>
     <div class='field large-2 columns left'>
       <%= label_tag :reviewer_ids, 'Worked With' %>
-      <%= select_tag :reviewer_ids, options_for_select(Rating.all.collect {|x| [x.user.name, x.user.id]}, params[:reviewer_ids]), :multiple => true %>
+      <%= select_tag :reviewer_ids, options_for_select(User.all.collect {|x| [x.name, x.id]}, params[:reviewer_ids]), :multiple => true %>
     </div>
     <div class='field large-2 columns left'>
       <%= label_tag :rating, 'Avg Rating >=' %>
