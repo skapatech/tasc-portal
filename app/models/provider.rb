@@ -50,7 +50,7 @@ class Provider < ActiveRecord::Base
         next if value.empty?
         eq = Array.new
         value[:expertises_attributes].each do |ea|
-          eq << "(expertises.subject_id=#{ea[1]['subject_id']} and expertises.experience>=#{ea[1]['experience']})"
+          eq << "(expertises.subject_id=#{ea[1]['subject_id']} and expertises.experience=#{ea[1]['experience']})"
         end
         @providers = @providers.joins(:expertises).where(eq.join(" OR "))
                         .group('providers.id').having('count(*)=?',value[:expertises_attributes].count)
