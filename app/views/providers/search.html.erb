@@ -10,8 +10,8 @@
       <%= select_tag :rating, options_for_select([nil, 1, 2, 3, 4, 5], params[:rating]) %>
     </div>
     <div class='field large-2 columns left'>
-      <%= label_tag :rate, 'Rate <=' %>
-      <%= number_field_tag :rate, params[:rate] %>
+      <%= label_tag :language_ids, 'Languages' %>
+      <%= select_tag :language_ids, options_for_select(Language.all.collect {|x| [x.name, x.id]}, params[:language_ids]), :multiple => true %>
     </div>
   </div>
   <div class='row'>
@@ -20,15 +20,9 @@
       <%= select_tag :degree_ids, options_for_select(Degree.all.collect {|x| [x.name, x.id]}, params[:degree_ids]), :multiple => true %>
     </div>
     <div class='field large-2 columns left'>
-      <%= label_tag :major, 'Education Field' %>
+      <%= label_tag :major, 'Education' %>
       <%= text_field_tag :major, params[:major] %>
     </div>
-    <div class='field large-2 columns left'>
-      <%= label_tag :language_ids, 'Languages' %>
-      <%= select_tag :language_ids, options_for_select(Language.all.collect {|x| [x.name, x.id]}, params[:language_ids]), :multiple => true %>
-    </div>
-  </div>
-  <div class='row'>
     <div class='field large-2 columns left'>
       <%= label_tag :resume, 'Resume' %>
       <%= text_field_tag :resume, params[:resume] %>
