@@ -291,7 +291,7 @@ DEPENDENCIES
   zurb-foundation
 
 RUBY VERSION
-   ruby 2.0.0p648
+   ruby 2.3.4p301
 
 BUNDLED WITH
    1.16.0.pre.2
