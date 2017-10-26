@@ -87,4 +87,4 @@ gem 'cocoon'
 # gem 'activerecord-sqlserver-adapter', '~> 4.1.0'
 # gem 'area'
 
-ruby "2.3.3"
+ruby "2.3.4"
