@@ -73,6 +73,10 @@ group :test do
   gem "selenium-webdriver", "~> 2.39.0"
 end
 
+group :production do
+  gem "rails_12factor"
+end
+
 gem 'zurb-foundation'
 
 gem 'devise'
@@ -82,3 +86,5 @@ gem 'cocoon'
 # gem 'tiny_tds'
 # gem 'activerecord-sqlserver-adapter', '~> 4.1.0'
 # gem 'area'
+
+ruby "2.3.3"

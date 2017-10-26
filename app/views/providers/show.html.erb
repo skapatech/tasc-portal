@@ -95,8 +95,8 @@
     <tbody>
       <% @provider.expertises.each do |expertise| %>
         <tr>
-          <td><%= expertise.subject.subject_area.name %></td>
-          <td><%= expertise.subject.name %></td>
+          <td><%= expertise.subject.nil? ? "" : expertise.subject.subject_area.name %></td>
+          <td><%= expertise.subject.nil? ? "" : expertise.subject.name %></td>
           <td><%= Expertise.EXPERIENCE[expertise.experience] %></td>
           <td><%= expertise.comment %></td>
         </tr>
